@@ -43,14 +43,10 @@ class QTerrainView::Self final
   {
     m_layout.addWidget(&m_openGLWidget);
 
-    QObject::connect(&m_openGLWidget, &OpenGLWidget::contextInitialized, [this]() {
-      m_contextInitialized = true;
-    });
+    QObject::connect(&m_openGLWidget, &OpenGLWidget::contextInitialized, [this]() { m_contextInitialized = true; });
 
-    QObject::connect(&m_openGLWidget,
-                     &OpenGLWidget::contextInitialized,
-                     terrain_view,
-                     &QTerrainView::contextInitialized);
+    QObject::connect(
+      &m_openGLWidget, &OpenGLWidget::contextInitialized, terrain_view, &QTerrainView::contextInitialized);
   }
 };
 
@@ -62,6 +58,12 @@ QTerrainView::QTerrainView(QWidget* parent)
 QTerrainView::~QTerrainView()
 {
   delete m_self;
+}
+
+bool
+QTerrainView::isContextInitialized()
+{
+  return m_self->m_contextInitialized;
 }
 
 bool

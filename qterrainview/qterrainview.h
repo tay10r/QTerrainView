@@ -38,6 +38,8 @@ public:
 
   ~QTerrainView();
 
+  bool isContextInitialized();
+
   bool setBackgroundColor(const QColor&);
 
   bool setLightDirection(float x, float y, float z);
