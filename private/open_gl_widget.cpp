@@ -18,9 +18,10 @@ OpenGLWidget::~OpenGLWidget()
 {
   makeCurrent();
 
-  m_terrain->destroy();
-
-  delete m_terrain;
+  if (m_terrain) {
+    m_terrain->destroy();
+    delete m_terrain;
+  }
 }
 
 void
